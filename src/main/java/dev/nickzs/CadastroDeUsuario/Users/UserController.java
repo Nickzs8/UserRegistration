@@ -1,4 +1,4 @@
-package dev.nickzs.CadastroDeUsuario;
+package dev.nickzs.CadastroDeUsuario.Users;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
