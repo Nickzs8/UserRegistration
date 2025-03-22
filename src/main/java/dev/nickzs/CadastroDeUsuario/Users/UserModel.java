@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "tb_user")
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 
 public class UserModel {
@@ -20,16 +19,18 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
 
     @Column(unique = true)
     private String email;
 
+    @Column
     private int age;
 
     @ManyToOne
-    @JoinColumn(name = "assingment_id")
-    private AssingmentModel assingment;
+    @JoinColumn(name = "assignment_id")
+    private AssingmentModel assignment;
 
 
 }

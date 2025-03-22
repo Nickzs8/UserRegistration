@@ -7,10 +7,9 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_assingments")
+@Table(name = "tb_assignment")
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 
 public class AssingmentModel {
@@ -18,10 +17,13 @@ public class AssingmentModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
     private String name;
 
+    @Column
     private int hoursToCompletion;
 
+    @Column
     @OneToMany(mappedBy = "assignment")
     private List<UserModel> users;
 }
