@@ -1,11 +1,10 @@
 package dev.nickzs.CadastroDeUsuario.Users;
 
-import dev.nickzs.CadastroDeUsuario.Assingments.AssingmentModel;
+import dev.nickzs.CadastroDeUsuario.Assignments.AssignmentModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "tb_user")
@@ -30,7 +29,7 @@ public class UserModel {
 
     @ManyToOne
     @JoinColumn(name = "assignment_id")
-    private AssingmentModel assignment;
+    private AssignmentModel assignment;
 
 
 }

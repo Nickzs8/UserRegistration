@@ -1,5 +1,6 @@
-package dev.nickzs.CadastroDeUsuario.Assingments;
+package dev.nickzs.CadastroDeUsuario.Assignments;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.nickzs.CadastroDeUsuario.Users.UserModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 
-public class AssingmentModel {
+public class AssignmentModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,5 +26,6 @@ public class AssingmentModel {
 
     @Column
     @OneToMany(mappedBy = "assignment")
+    @JsonIgnore
     private List<UserModel> users;
 }
