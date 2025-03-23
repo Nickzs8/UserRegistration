@@ -16,4 +16,6 @@ public class AssignmentService {
     public List<AssignmentModel> getAllAssignments(){
         return assignmentRepository.findAll();
     }
+
+
 }

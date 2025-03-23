@@ -1,0 +1,2 @@
+ALTER TABLE tb_user
+ADD COLUMN img_url VARCHAR(200)

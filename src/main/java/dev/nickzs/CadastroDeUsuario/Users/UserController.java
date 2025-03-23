@@ -1,9 +1,9 @@
 package dev.nickzs.CadastroDeUsuario.Users;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -21,19 +21,19 @@ public class UserController {
         return "This is my first message in this route.";
     }
 
-    @PostMapping("/add")
-    public String addUser(){
-        return "User added";
+    @PostMapping("/createUser")
+    public UserModel addUser(@RequestBody UserModel userModel){
+        return userService.createUser(userModel);
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping("/getUser")
     public List<UserModel> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/allID")
-    public String getUserByID(){
-        return "";
+    @GetMapping("/getUser/{id}")
+    public UserModel getUserByID(@PathVariable long id){
+        return userService.getUserById(id);
     }
 
     @PutMapping("/update")
