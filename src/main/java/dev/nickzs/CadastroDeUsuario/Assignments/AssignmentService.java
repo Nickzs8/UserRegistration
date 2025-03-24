@@ -3,6 +3,7 @@ package dev.nickzs.CadastroDeUsuario.Assignments;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssignmentService {
@@ -17,5 +18,12 @@ public class AssignmentService {
         return assignmentRepository.findAll();
     }
 
+    public AssignmentModel getAssignmentByID(long id){
+        Optional<AssignmentModel> assignmentModel = assignmentRepository.findById(id);
+        return assignmentModel.orElse(null);
+    }
 
+    public void deleteAssignment(long id){
+        assignmentRepository.deleteById(id);
+    }
 }

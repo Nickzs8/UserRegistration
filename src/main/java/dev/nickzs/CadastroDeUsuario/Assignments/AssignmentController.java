@@ -22,14 +22,14 @@ public class AssignmentController {
         return "assingment added";
     }
 
-    @GetMapping("/allAssignments")
+    @GetMapping("/getAssignment")
     public List<AssignmentModel> getAllAssignments(){
         return assignmentService.getAllAssignments();
     }
 
-    @GetMapping("/allID")
-    public String getassignmentByID(){
-        return "";
+    @GetMapping("/getAssignment/{id}")
+    public AssignmentModel getAssignmentByID(@PathVariable long id){
+        return assignmentService.getAssignmentByID(id);
     }
 
     @PutMapping("/update")
@@ -37,8 +37,8 @@ public class AssignmentController {
         return "";
     }
 
-    @DeleteMapping("/delete")
-    public String deleteAssignment(){
-        return "";
+    @DeleteMapping("/delete/{id}")
+    public void deleteAssignment(@PathVariable long id){
+        assignmentService.deleteAssignment(id);
     }
 }

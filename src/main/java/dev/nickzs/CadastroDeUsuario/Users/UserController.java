@@ -3,7 +3,6 @@ package dev.nickzs.CadastroDeUsuario.Users;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -36,14 +35,14 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PutMapping("/update")
-    public String updateUser(){
-        return "";
+    @PutMapping("/update/{id}")
+    public String updateUser(@PathVariable long id, @RequestBody UserModel updatedUser){
+        return userService.updateUser(id, updatedUser);
     }
 
-    @DeleteMapping("/delete")
-    public String deleteUser(){
-        return "";
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable long id){
+        userService.deleteUserById(id);
     }
 
 

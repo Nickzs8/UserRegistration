@@ -2,9 +2,7 @@ package dev.nickzs.CadastroDeUsuario.Users;
 
 import dev.nickzs.CadastroDeUsuario.Assignments.AssignmentModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -33,4 +31,5 @@ public class UserModel {
 
 
 }
+
 
