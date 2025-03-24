@@ -28,7 +28,7 @@ public class AssignmentController {
         return assignmentService.getAssignmentByID(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public String updateAssignment(@PathVariable long id, @RequestBody AssignmentModel updatedAssignment){
         return assignmentService.updateAssignment(id, updatedAssignment);
     }

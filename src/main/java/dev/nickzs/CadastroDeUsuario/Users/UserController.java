@@ -30,7 +30,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public String updateUser(@PathVariable long id, @RequestBody UserModel updatedUser){
         return userService.updateUser(id, updatedUser);
     }
