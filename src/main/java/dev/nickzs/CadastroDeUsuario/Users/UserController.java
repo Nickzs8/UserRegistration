@@ -15,13 +15,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/Greetings")
-    public String Greetings(){
-        return "This is my first message in this route.";
-    }
-
     @PostMapping("/createUser")
-    public UserModel addUser(@RequestBody UserModel userModel){
+    public String addUser(@RequestBody UserModel userModel){
         return userService.createUser(userModel);
     }
 

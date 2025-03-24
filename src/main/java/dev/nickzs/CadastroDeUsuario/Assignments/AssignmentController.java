@@ -1,4 +1,5 @@
 package dev.nickzs.CadastroDeUsuario.Assignments;
+import dev.nickzs.CadastroDeUsuario.Users.UserModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,14 +13,9 @@ public class AssignmentController {
         this.assignmentService = assignmentService;
     }
 
-    @GetMapping("/Greetings")
-    public String Greetings(){
-        return "This is my first message in this route.";
-    }
-
-    @PostMapping("/add")
-    public String addAssignment(){
-        return "assingment added";
+    @PostMapping("/createAssignment")
+    public String addAssignment(@RequestBody AssignmentModel assignmentModel){
+        return assignmentService.createAssignment(assignmentModel);
     }
 
     @GetMapping("/getAssignment")
@@ -32,9 +28,9 @@ public class AssignmentController {
         return assignmentService.getAssignmentByID(id);
     }
 
-    @PutMapping("/update")
-    public String updateAssignment(){
-        return "";
+    @PutMapping("/update/{id}")
+    public String updateAssignment(@PathVariable long id, @RequestBody AssignmentModel updatedAssignment){
+        return assignmentService.updateAssignment(id, updatedAssignment);
     }
 
     @DeleteMapping("/delete/{id}")

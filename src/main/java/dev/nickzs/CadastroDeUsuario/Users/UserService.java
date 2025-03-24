@@ -27,8 +27,9 @@ public class UserService {
         return userModel.orElse(null);
     }
 
-    public UserModel createUser(UserModel userModel){
-        return userRepository.save(userModel);
+    public String createUser(UserModel userModel){
+        userRepository.save(userModel);
+        return "User Created";
     }
     public void deleteUserById(long id){
         userRepository.deleteById(id);
@@ -36,7 +37,7 @@ public class UserService {
 
     public String updateUser(long id, UserModel updatedUser) {
 
-        if(!userRepository.existsById(id)) return null;
+        if(!userRepository.existsById(id)) return "User not found";
 
         Optional<UserModel> existingModel = userRepository.findById(id);
         UserModel userModel = existingModel.get();
