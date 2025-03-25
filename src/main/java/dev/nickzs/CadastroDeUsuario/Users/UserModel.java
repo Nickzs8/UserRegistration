@@ -25,6 +25,12 @@ public class UserModel {
     @Column
     private int age;
 
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 3")
+    private int priority;
+
+    @Column(name= "img_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "assignment_id")
     private AssignmentModel assignment;

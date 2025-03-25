@@ -14,8 +14,8 @@ public class AssignmentController {
     }
 
     @PostMapping("/createAssignment")
-    public String addAssignment(@RequestBody AssignmentModel assignmentModel){
-        return assignmentService.createAssignment(assignmentModel);
+    public String addAssignment(@RequestBody AssignmentDTO assignmentDTO){
+        return assignmentService.createAssignment(assignmentDTO);
     }
 
     @GetMapping("/getAssignment")
@@ -28,8 +28,8 @@ public class AssignmentController {
         return assignmentService.getAssignmentByID(id);
     }
 
-    @PutMapping("/update/{id}")
-    public String updateAssignment(@PathVariable long id, @RequestBody AssignmentModel updatedAssignment){
+    @PatchMapping("/update/{id}")
+    public String updateAssignment(@PathVariable long id, @RequestBody AssignmentDTO updatedAssignment){
         return assignmentService.updateAssignment(id, updatedAssignment);
     }
 

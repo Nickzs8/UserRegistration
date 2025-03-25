@@ -16,8 +16,8 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public String addUser(@RequestBody UserModel userModel){
-        return userService.createUser(userModel);
+    public String addUser(@RequestBody UserDTO userDTO){
+        return userService.createUser(userDTO);
     }
 
     @GetMapping("/getUser")
@@ -30,8 +30,8 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PutMapping("/update/{id}")
-    public String updateUser(@PathVariable long id, @RequestBody UserModel updatedUser){
+    @PatchMapping("/update/{id}")
+    public String updateUser(@PathVariable long id, @RequestBody UserDTO updatedUser){
         return userService.updateUser(id, updatedUser);
     }
 
