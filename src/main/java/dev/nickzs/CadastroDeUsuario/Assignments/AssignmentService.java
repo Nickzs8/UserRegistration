@@ -8,13 +8,16 @@ import java.util.Optional;
 @Service
 public class AssignmentService {
 
+    private final AssignmentMapper assignmentMapper;
     private final AssignmentRepository assignmentRepository;
 
-    public AssignmentService(AssignmentRepository assignmentRepository) {
+    public AssignmentService(AssignmentRepository assignmentRepository, AssignmentMapper assignmentMapper) {
         this.assignmentRepository = assignmentRepository;
+        this.assignmentMapper = assignmentMapper;
     }
 
-    public String createAssignment(AssignmentModel assignmentModel){
+    public String createAssignment(AssignmentDTO assignmentDTO){
+        AssignmentModel assignmentModel = assignmentMapper.mapToModel(assignmentDTO);
          assignmentRepository.save(assignmentModel);
          return "Assignment Created";
     }
@@ -32,7 +35,7 @@ public class AssignmentService {
         assignmentRepository.deleteById(id);
     }
 
-    public String updateAssignment(long id, AssignmentModel updatedAssignment) {
+    public String updateAssignment(long id, AssignmentDTO updatedAssignment) {
 
         if (!assignmentRepository.existsById(id)) return "Assignment not found";
 
