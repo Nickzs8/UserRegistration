@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AssignmentService {
@@ -22,13 +23,16 @@ public class AssignmentService {
          return "Assignment Created";
     }
 
-    public List<AssignmentModel> getAllAssignments() {
-        return assignmentRepository.findAll();
+    public List<AssignmentDTO> getAllAssignments() {
+        List<AssignmentModel> assignments = assignmentRepository.findAll();
+        return assignments.stream()
+                .map(assignmentMapper::mapToDTO)
+                .collect(Collectors.toList());
     }
 
-    public AssignmentModel getAssignmentByID(long id) {
+    public AssignmentDTO getAssignmentByID(long id) {
         Optional<AssignmentModel> assignmentModel = assignmentRepository.findById(id);
-        return assignmentModel.orElse(null);
+        return assignmentModel.map(assignmentMapper::mapToDTO).orElse(null);
     }
 
     public void deleteAssignment(long id) {

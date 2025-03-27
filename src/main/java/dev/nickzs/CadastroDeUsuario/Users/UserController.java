@@ -21,12 +21,12 @@ public class UserController {
     }
 
     @GetMapping("/getUser")
-    public List<UserModel> getAllUsers(){
+    public List<UserDTO> getAllUsers(){
         return userService.getAllUsers();
     }
 
     @GetMapping("/getUser/{id}")
-    public UserModel getUserByID(@PathVariable long id){
+    public UserDTO getUserByID(@PathVariable long id){
         return userService.getUserById(id);
     }
 

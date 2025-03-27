@@ -1,8 +1,6 @@
 package dev.nickzs.CadastroDeUsuario.Users;
 
-import dev.nickzs.CadastroDeUsuario.Assignments.AssignmentDTO;
 import dev.nickzs.CadastroDeUsuario.Assignments.AssignmentMapper;
-import dev.nickzs.CadastroDeUsuario.Assignments.AssignmentModel;
 import org.springframework.stereotype.Component;
 
 @Component
