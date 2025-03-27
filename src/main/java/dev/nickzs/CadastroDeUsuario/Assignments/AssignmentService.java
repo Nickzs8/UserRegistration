@@ -30,12 +30,12 @@ public class AssignmentService {
                 .collect(Collectors.toList());
     }
 
-    public AssignmentDTO getAssignmentByID(long id) {
+    public AssignmentDTO getAssignmentById(long id) {
         Optional<AssignmentModel> assignmentModel = assignmentRepository.findById(id);
         return assignmentModel.map(assignmentMapper::mapToDTO).orElse(null);
     }
 
-    public void deleteAssignment(long id) {
+    public void deleteAssignmentById(long id) {
         assignmentRepository.deleteById(id);
     }
 

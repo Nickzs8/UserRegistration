@@ -33,10 +33,10 @@ public class UserService {
         return userModel.map(userMapper::mapToDTO).orElse(null);
     }
 
-    public String createUser(UserDTO userDTO){
+    public UserDTO createUser(UserDTO userDTO){
         UserModel userModel = userMapper.mapToModel(userDTO);
         userRepository.save(userModel);
-        return "User Created";
+        return userDTO;
     }
     public void deleteUserById(long id){
         userRepository.deleteById(id);

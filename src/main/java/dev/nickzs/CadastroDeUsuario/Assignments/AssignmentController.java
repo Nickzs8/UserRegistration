@@ -1,5 +1,6 @@
 package dev.nickzs.CadastroDeUsuario.Assignments;
-import dev.nickzs.CadastroDeUsuario.Users.UserModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,27 +15,49 @@ public class AssignmentController {
     }
 
     @PostMapping("/createAssignment")
-    public String addAssignment(@RequestBody AssignmentDTO assignmentDTO){
-        return assignmentService.createAssignment(assignmentDTO);
+    public ResponseEntity<String> addAssignment(@RequestBody AssignmentDTO assignmentDTO){
+        assignmentService.createAssignment(assignmentDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("assignment created sucessfully!" + assignmentDTO.getName() + " (ID):" + assignmentDTO.getId());
     }
 
     @GetMapping("/getAssignment")
-    public List<AssignmentDTO> getAllAssignments(){
-        return assignmentService.getAllAssignments();
+    public ResponseEntity<List<AssignmentDTO>> getAllAssignments(){
+        List<AssignmentDTO> assignments = assignmentService.getAllAssignments();
+        return ResponseEntity.ok(assignments);
     }
 
     @GetMapping("/getAssignment/{id}")
-    public AssignmentDTO getAssignmentByID(@PathVariable long id){
-        return assignmentService.getAssignmentByID(id);
+    public ResponseEntity<?> getAssignmentByID(@PathVariable long id){
+        AssignmentDTO assignmentDTO = assignmentService.getAssignmentById(id);
+        if(assignmentDTO != null){
+            return ResponseEntity.ok(assignmentDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Assignment with ID " + id + "was not found!");
+        }
     }
 
     @PatchMapping("/update/{id}")
-    public String updateAssignment(@PathVariable long id, @RequestBody AssignmentDTO updatedAssignment){
-        return assignmentService.updateAssignment(id, updatedAssignment);
+    public ResponseEntity<?> updateAssignment(@PathVariable long id, @RequestBody AssignmentDTO updatedAssignment){
+        if(assignmentService.getAssignmentById(id) != null) {
+            assignmentService.updateAssignment(id, updatedAssignment);
+            return ResponseEntity.ok(updatedAssignment);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Assignment with ID " + id + "was not found!");
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAssignment(@PathVariable long id){
-        assignmentService.deleteAssignment(id);
+    public ResponseEntity<String> deleteAssignment(@PathVariable long id){
+
+        if(assignmentService.getAssignmentById(id) != null){
+            assignmentService.deleteAssignmentById(id);
+            return ResponseEntity.ok("assignment with ID " + id + "deleted with sucess!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("assignment with ID " + id + "was not found!");
+        }
     }
 }
