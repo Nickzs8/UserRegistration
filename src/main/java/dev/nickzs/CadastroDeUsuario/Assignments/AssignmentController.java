@@ -19,12 +19,12 @@ public class AssignmentController {
     }
 
     @GetMapping("/getAssignment")
-    public List<AssignmentModel> getAllAssignments(){
+    public List<AssignmentDTO> getAllAssignments(){
         return assignmentService.getAllAssignments();
     }
 
     @GetMapping("/getAssignment/{id}")
-    public AssignmentModel getAssignmentByID(@PathVariable long id){
+    public AssignmentDTO getAssignmentByID(@PathVariable long id){
         return assignmentService.getAssignmentByID(id);
     }
 

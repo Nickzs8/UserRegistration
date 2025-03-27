@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -20,13 +21,16 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public List<UserModel> getAllUsers(){
-        return userRepository.findAll();
+    public List<UserDTO> getAllUsers(){
+        List<UserModel> users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::mapToDTO)
+                .collect(Collectors.toList());
     }
 
-    public UserModel getUserById(long id){
+    public UserDTO getUserById(long id){
         Optional<UserModel> userModel = userRepository.findById(id);
-        return userModel.orElse(null);
+        return userModel.map(userMapper::mapToDTO).orElse(null);
     }
 
     public String createUser(UserDTO userDTO){
