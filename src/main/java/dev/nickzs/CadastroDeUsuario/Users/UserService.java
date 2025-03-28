@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private AssignmentRepository assignmentRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final AssignmentRepository assignmentRepository;
+    private final UserMapper userMapper;
 
     public UserService(UserRepository userRepository, AssignmentRepository assignmentRepository, UserMapper userMapper) {
         this.userRepository = userRepository;

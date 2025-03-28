@@ -8,7 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/assignments")
 public class AssignmentController {
-    private AssignmentService assignmentService;
+    private final AssignmentService assignmentService;
 
     public AssignmentController(AssignmentService assignmentService) {
         this.assignmentService = assignmentService;
