@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UsersTable</title>
+    <title>User Details</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,9 +31,6 @@
         tr:hover {
             background: #f1f1f1;
         }
-        td:last-child {
-            text-align: center;
-        }
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -47,28 +44,39 @@
             font-size: 14px;
             display: inline-block;
         }
-        .details {
-            background: #007bff;
-        }
-        .update {
-            background: #ffc107;
-        }
-        .delete {
-            background: #dc3545;
+        .return {
+            background: gray;
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-<h1>User details</h1>
+<h1>User Details</h1>
 <table>
     <thead>
     <tr>
-        <td>ID</td>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Priority</th>
+        <th>Assignment</th>
     </tr>
     </thead>
     <tbody>
-
+    <tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.priority}"></td>
+        <td th:text="${user.assignment.id}"></td>
+    </tr>
     </tbody>
 </table>
+
+<a class="return" th:href="@{/users/ui/getUser}">Return</a>
+
 </body>
 </html>

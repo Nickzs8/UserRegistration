@@ -3,10 +3,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,11 +35,38 @@ public class UserControlerUI {
 
         if(userDTO != null){
             model.addAttribute("user", userDTO);
-            return detailsUser;
+            return "detailsUser";
         } else
             model.addAttribute("message", "User not found");
 
             return "getUser";
     }
+
+    @PostMapping("/createUser")
+    public String addUser(@ModelAttribute UserDTO userDTO){
+        userService.createUser(userDTO);
+        return "redirect:/users/ui/getUser";
+    }
+
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "registerUser";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable long id, @ModelAttribute UserDTO updatedUser){
+            userService.updateUser(id, updatedUser);
+            return "redirect:/users/ui/getUser";
+    }
+
+    @PostMapping("/updateUser")
+    public String showUpdateForm(@RequestParam("id") long id, Model model) {
+        UserDTO userDTO = userService.getUserById(id);
+        model.addAttribute("user", userDTO);
+        return "updateUser";
+    }
+
+
 
 }
